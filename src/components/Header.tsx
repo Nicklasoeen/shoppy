@@ -5,7 +5,7 @@ function Header() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <NavLink className="site-logo" to="/" aria-label="VYRE home">
+        <NavLink className="site-logo" to="/" aria-label="Vyre home">
           <img src={vyreLogo} alt="" />
         </NavLink>
         <nav aria-label="Main navigation" className="site-navigation">

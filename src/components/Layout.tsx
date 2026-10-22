@@ -1,10 +1,12 @@
-import { Outlet } from 'react-router'
+import { Outlet, useLocation } from 'react-router'
 import Footer from './Footer'
 import Header from './Header'
 
 function Layout() {
+  const isHomepage = useLocation().pathname === '/'
+
   return (
-    <div className="app-shell">
+    <div className={`app-shell${isHomepage ? ' app-shell--home' : ''}`}>
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
