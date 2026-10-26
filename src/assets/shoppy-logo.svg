@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="890" height="200" viewBox="0 0 890 200" role="img" aria-labelledby="shoppy-title">
+  <title id="shoppy-title">Shoppy</title>
+  <g fill="#111111" fill-rule="evenodd">
+    <path transform="translate(20 10)" d="M64 20H184L167 52H84L68 74H142L162 95L119 158H0L18 126H100L116 104H42L20 82Z"/>
+    <g transform="translate(248 44) skewX(-12) scale(1.12)">
+      <path d="M24 0H78V22H28Q22 22 22 28V34Q22 40 28 40H52Q80 40 80 66V74Q80 100 54 100H0V78H50Q58 78 58 70Q58 62 50 62H28Q0 62 0 36V26Q0 0 24 0Z"/>
+      <path transform="translate(90)" d="M0 0H22V38H56V0H78V100H56V60H22V100H0Z"/>
+      <path transform="translate(180)" d="M26 0H54Q80 0 80 26V74Q80 100 54 100H26Q0 100 0 74V26Q0 0 26 0ZM30 22Q22 22 22 30V70Q22 78 30 78H50Q58 78 58 70V30Q58 22 50 22Z"/>
+      <path transform="translate(270)" d="M0 0H52Q80 0 80 28V40Q80 68 52 68H22V100H0ZM22 22V46H48Q58 46 58 36V32Q58 22 48 22Z"/>
+      <path transform="translate(360)" d="M0 0H52Q80 0 80 28V40Q80 68 52 68H22V100H0ZM22 22V46H48Q58 46 58 36V32Q58 22 48 22Z"/>
+      <path transform="translate(450)" d="M0 0H25L43 37L61 0H86L54 60V100H32V60Z"/>
+    </g>
+  </g>
+</svg>

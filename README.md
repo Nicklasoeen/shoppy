@@ -1,6 +1,6 @@
-# VYRE
+# Shoppy
 
-Vyre is a React application built with Vite and TypeScript. The app uses React
+Shoppy is a React application built with Vite and TypeScript. The app uses React
 Router for its home, contact, cart, and not-found pages.
 
 ## Development

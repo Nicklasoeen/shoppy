@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router'
-import vyreLogo from '../assets/download.svg'
+import shoppyLogo from '../assets/shoppy-logo.svg'
 
 function Header() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <NavLink className="site-logo" to="/" aria-label="Vyre home">
-          <img src={vyreLogo} alt="" />
+        <NavLink className="site-logo" to="/" aria-label="Shoppy home">
+          <img src={shoppyLogo} alt="" />
         </NavLink>
         <nav aria-label="Main navigation" className="site-navigation">
           <NavLink end to="/">

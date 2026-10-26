@@ -49,7 +49,7 @@
 
 .site-logo img {
   display: block;
-  width: 6rem;
+  width: 8.5rem;
   height: auto;
 }
 
@@ -69,33 +69,6 @@
   color: var(--color-text);
   text-decoration: underline;
   text-underline-offset: 0.3em;
-}
-
-.app-shell--home .site-header {
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  right: 0;
-  left: 0;
-  border-bottom: 0;
-  color: #fff;
-}
-
-.app-shell--home .skip-link {
-  z-index: 3;
-}
-
-.app-shell--home .site-header__inner {
-  width: min(100% - 2 * var(--space-4), var(--content-width));
-}
-
-.app-shell--home .site-logo img {
-  filter: brightness(0) invert(1);
-}
-
-.app-shell--home .site-navigation a,
-.app-shell--home .site-navigation a[aria-current='page'] {
-  color: #fff;
 }
 
 .app-shell--home .main-content {
