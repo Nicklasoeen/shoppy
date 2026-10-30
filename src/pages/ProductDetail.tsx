@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Link, useParams } from 'react-router'
+import Toast from '../components/Toast'
+import { useCart } from '../hooks/useCart'
 import { useProduct } from '../hooks/useProduct'
 import { formatPrice, formatRating, getPricing } from '../utils/pricing'
 import type { Product } from '../types/product'
@@ -29,6 +31,20 @@ function ProductImage({ product }: { product: Product }) {
 }
 
 function ProductInfo({ product }: { product: Product }) {
+  const { addToCart } = useCart()
+  const [toast, setToast] = useState<{ message: string; nonce: number } | null>(
+    null,
+  )
+  const dismissToast = useCallback(() => setToast(null), [])
+
+  function handleAddToCart() {
+    addToCart(product)
+    setToast((current) => ({
+      message: `${product.title} added to cart`,
+      nonce: (current?.nonce ?? 0) + 1,
+    }))
+  }
+
   const { isDiscounted, sellingPrice, discountPercent } = getPricing(
     product.price,
     product.discountedPrice,
@@ -36,6 +52,11 @@ function ProductInfo({ product }: { product: Product }) {
 
   return (
     <article className="product-detail__layout">
+      <Toast
+        message={toast?.message ?? null}
+        nonce={toast?.nonce ?? 0}
+        onDismiss={dismissToast}
+      />
       <div className="product-detail__media">
         <ProductImage product={product} />
       </div>
@@ -54,6 +75,13 @@ function ProductInfo({ product }: { product: Product }) {
         </p>
         <p className="product-detail__rating">{formatRating(product.rating)}</p>
         <p className="product-detail__description">{product.description}</p>
+        <button
+          className="product-detail__add"
+          onClick={handleAddToCart}
+          type="button"
+        >
+          Add to Cart
+        </button>
 
         {product.tags.length > 0 && (
           <ul aria-label="Tags" className="product-detail__tags">

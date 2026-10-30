@@ -136,3 +136,19 @@
     gap: var(--space-4);
   }
 }
+
+.product-detail .product-detail__add {
+  padding: 0.75rem var(--space-4);
+  border: 0;
+  border-radius: var(--radius-small);
+  background: var(--color-text);
+  color: var(--color-background);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.product-detail .product-detail__add:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}

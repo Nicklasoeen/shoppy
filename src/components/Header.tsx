@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router'
 import shoppyLogo from '../assets/shoppy-logo.svg'
+import { useCart } from '../hooks/useCart'
 
 function Header() {
+  const { itemCount } = useCart()
+
   return (
     <header className="site-header">
       <div className="site-header__inner">
@@ -13,7 +16,12 @@ function Header() {
             Home
           </NavLink>
           <NavLink to="/contact">Contact</NavLink>
-          <NavLink to="/cart">Cart</NavLink>
+          <NavLink
+            aria-label={`Cart, ${itemCount} ${itemCount === 1 ? 'item' : 'items'}`}
+            to="/cart"
+          >
+            Cart <span className="site-navigation__count">{itemCount}</span>
+          </NavLink>
         </nav>
       </div>
     </header>
