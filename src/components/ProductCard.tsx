@@ -1,11 +1,8 @@
 import { useState } from 'react'
+import { Link } from 'react-router'
 import type { Product } from '../types/product'
+import { formatPrice, formatRating, getPricing } from '../utils/pricing'
 import './Products.css'
-
-const priceFormatter = new Intl.NumberFormat('nb-NO', {
-  style: 'currency',
-  currency: 'NOK',
-})
 
 interface ProductCardProps {
   product: Product
@@ -13,47 +10,49 @@ interface ProductCardProps {
 
 function ProductCard({ product }: ProductCardProps) {
   const [imageFailed, setImageFailed] = useState(false)
-  const { title, price, discountedPrice, image, rating } = product
-
-  const isDiscounted = discountedPrice < price
-  const sellingPrice = isDiscounted ? discountedPrice : price
-  const discountPercent =
-    isDiscounted && price > 0
-      ? Math.round(((price - discountedPrice) / price) * 100)
-      : 0
+  const { id, title, price, discountedPrice, image, rating } = product
+  const { isDiscounted, sellingPrice, discountPercent } = getPricing(
+    price,
+    discountedPrice,
+  )
 
   return (
     <article className="product-card">
-      <div className="product-card__media">
-        {discountPercent > 0 && (
-          <span className="product-card__sticker">-{discountPercent}%</span>
-        )}
-        {imageFailed ? (
-          <span className="product-card__fallback">Image unavailable</span>
-        ) : (
-          <img
-            alt={image?.alt?.trim() || title}
-            className="product-card__image"
-            loading="lazy"
-            onError={() => setImageFailed(true)}
-            src={image?.url}
-          />
-        )}
-      </div>
-      <div className="product-card__body">
-        <h3 className="product-card__title">{title}</h3>
-        <p className="product-card__price">
-          <span>{priceFormatter.format(sellingPrice)}</span>
-          {isDiscounted && (
-            <s className="product-card__original-price">
-              {priceFormatter.format(price)}
-            </s>
+      <Link
+        className="product-card__link"
+        to={`/products/${encodeURIComponent(id)}`}
+      >
+        <div className="product-card__media">
+          {discountPercent > 0 && (
+            <span className="product-card__sticker">-{discountPercent}%</span>
           )}
-        </p>
-        <p className="product-card__rating">
-          {rating > 0 ? `Rating: ${rating} / 5` : 'No reviews yet'}
-        </p>
-      </div>
+          {imageFailed ? (
+            <span className="product-card__fallback">Image unavailable</span>
+          ) : (
+            <img
+              alt={image?.alt?.trim() || title}
+              className="product-card__image"
+              loading="lazy"
+              onError={() => setImageFailed(true)}
+              src={image?.url}
+            />
+          )}
+        </div>
+        <div className="product-card__body">
+          <h3 className="product-card__title">{title}</h3>
+          <p className="product-card__price">
+            <span>{formatPrice(sellingPrice)}</span>
+            {isDiscounted && (
+              <s className="product-card__original-price">
+                {formatPrice(price)}
+              </s>
+            )}
+          </p>
+          <p className="product-card__rating">
+            {formatRating(rating)}
+          </p>
+        </div>
+      </Link>
     </article>
   )
 }

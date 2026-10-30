@@ -74,3 +74,31 @@ export async function fetchProducts(signal?: AbortSignal): Promise<Product[]> {
 
   return body.data
 }
+
+export async function fetchProduct(
+  id: string,
+  signal?: AbortSignal,
+): Promise<Product | null> {
+  const response = await fetch(`${PRODUCTS_URL}/${encodeURIComponent(id)}`, {
+    signal,
+  })
+
+  // The API answers 400 for malformed IDs and 404 for unknown ones.
+  if (response.status === 404 || response.status === 400) {
+    return null
+  }
+
+  if (!response.ok) {
+    throw new Error(
+      `Could not load the product (${response.status} ${response.statusText}).`,
+    )
+  }
+
+  const body: unknown = await response.json()
+
+  if (!isRecord(body) || !isProduct(body.data)) {
+    throw new Error('Received an unexpected response while loading the product.')
+  }
+
+  return body.data
+}

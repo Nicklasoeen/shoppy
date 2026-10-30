@@ -146,3 +146,16 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+.product-card .product-card__link {
+  position: absolute;
+  inset: 0;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.product-card .product-card__link:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: -3px;
+}
