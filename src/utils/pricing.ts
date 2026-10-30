@@ -21,3 +21,11 @@ export function getPricing(price: number, discountedPrice: number) {
 
   return { isDiscounted, sellingPrice, discountPercent }
 }
+
+export function toMinorUnits(value: number): number {
+  return Math.round(value * 100)
+}
+
+export function formatMinorUnits(minorUnits: number): string {
+  return formatPrice(minorUnits / 100)
+}

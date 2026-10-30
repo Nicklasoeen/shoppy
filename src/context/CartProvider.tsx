@@ -23,13 +23,35 @@ function CartProvider({ children }: { children: ReactNode }) {
     })
   }, [])
 
+  const removeFromCart = useCallback((productId: string) => {
+    setItems((current) =>
+      current.filter((item) => item.product.id !== productId),
+    )
+  }, [])
+
+  const updateQuantity = useCallback((productId: string, quantity: number) => {
+    if (!Number.isSafeInteger(quantity) || quantity < 1) return
+
+    setItems((current) => {
+      if (!current.some((item) => item.product.id === productId)) {
+        return current
+      }
+
+      return current.map((item) =>
+        item.product.id === productId ? { ...item, quantity } : item,
+      )
+    })
+  }, [])
+
   const value = useMemo(
     () => ({
       items,
       itemCount: items.reduce((sum, item) => sum + item.quantity, 0),
       addToCart,
+      removeFromCart,
+      updateQuantity,
     }),
-    [items, addToCart],
+    [items, addToCart, removeFromCart, updateQuantity],
   )
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
