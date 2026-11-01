@@ -1,0 +1,16 @@
+.checkout-result {
+  max-width: 42rem;
+}
+
+.checkout-result h1 {
+  margin: 0 0 var(--space-3);
+}
+
+.checkout-result p {
+  max-width: none;
+}
+
+.checkout-result [tabindex='-1']:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}

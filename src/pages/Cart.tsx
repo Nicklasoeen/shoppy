@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import Toast from '../components/Toast'
 import { useCart } from '../hooks/useCart'
 import type { CartItem } from '../types/cart'
@@ -30,7 +30,8 @@ function CartImage({ item }: { item: CartItem }) {
 }
 
 function Cart() {
-  const { items, removeFromCart, updateQuantity } = useCart()
+  const { items, removeFromCart, updateQuantity, clearCart } = useCart()
+  const navigate = useNavigate()
   const [toast, setToast] = useState<{ message: string; nonce: number } | null>(
     null,
   )
@@ -62,6 +63,15 @@ function Cart() {
       message: `${item.product.title} removed from cart`,
       nonce: (current?.nonce ?? 0) + 1,
     }))
+  }
+
+  function handleCheckout() {
+    if (items.length === 0) return
+
+    clearCart()
+    navigate('/checkout-success', {
+      state: { checkoutCompleted: true },
+    })
   }
 
   const rows = items.map((item) => {
@@ -151,6 +161,14 @@ function Cart() {
             <span>Total</span>
             <strong>{formatMinorUnits(totalMinor)}</strong>
           </p>
+          <button
+            className="cart__checkout"
+            disabled={items.length === 0}
+            onClick={handleCheckout}
+            type="button"
+          >
+            Checkout
+          </button>
         </>
       )}
     </div>

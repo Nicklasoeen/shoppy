@@ -43,6 +43,10 @@ function CartProvider({ children }: { children: ReactNode }) {
     })
   }, [])
 
+  const clearCart = useCallback(() => {
+    setItems([])
+  }, [])
+
   const value = useMemo(
     () => ({
       items,
@@ -50,8 +54,9 @@ function CartProvider({ children }: { children: ReactNode }) {
       addToCart,
       removeFromCart,
       updateQuantity,
+      clearCart,
     }),
-    [items, addToCart, removeFromCart, updateQuantity],
+    [items, addToCart, removeFromCart, updateQuantity, clearCart],
   )
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
