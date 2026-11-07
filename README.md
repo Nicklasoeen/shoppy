@@ -4,6 +4,8 @@ Shoppy is a small online shop where you can browse products, view product
 details, add items to a cart, and try the checkout. It also has a contact form
 that demonstrates form validation.
 
+[Open the live demo](https://shoppy-eosin-one.vercel.app/)
+
 ## Run the app
 
 Install the dependencies and start the development server:

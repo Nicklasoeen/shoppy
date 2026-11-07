@@ -1,9 +1,9 @@
 # AI log
 
 Tool used: ChatGPT
-Date: 30 October 2026
-Purpose: Guidance on using React Context to share cart state between pages and the header.
-Outcome: The cart keeps its contents when navigating between pages, and the count updates.
+Date: 26 October 2026
+Purpose: Created a logo for my project.
+Outcome: Generated the Shoppy logo for the project.
 
 Tool used: ChatGPT
 Date: 30 October 2026
