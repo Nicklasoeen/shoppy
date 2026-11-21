@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router'
+import cartIcon from '../assets/cart-svgrepo-com.svg'
 import shoppyLogo from '../assets/shoppy-logo.svg'
 import { useCart } from '../hooks/useCart'
 
@@ -18,9 +19,13 @@ function Header() {
           <NavLink to="/contact">Contact</NavLink>
           <NavLink
             aria-label={`Cart, ${itemCount} ${itemCount === 1 ? 'item' : 'items'}`}
+            className="site-navigation__cart"
             to="/cart"
           >
-            Cart <span className="site-navigation__count">{itemCount}</span>
+            <img src={cartIcon} alt="" />
+            <span aria-hidden="true" className="site-navigation__count">
+              {itemCount > 99 ? '99+' : itemCount}
+            </span>
           </NavLink>
         </nav>
       </div>

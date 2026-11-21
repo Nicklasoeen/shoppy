@@ -28,7 +28,7 @@ function isProductReview(value: unknown): value is ProductReview {
   )
 }
 
-function isProduct(value: unknown): value is Product {
+export function isProduct(value: unknown): value is Product {
   return (
     isRecord(value) &&
     typeof value.id === 'string' &&

@@ -31,8 +31,11 @@ helps catch mistakes while developing.
 
 The cart uses a shared React context, so product pages and the cart page can
 read and update the same items. This keeps the setup simple for a small shop
-without adding a separate state-management library. The cart is held in memory,
-so it resets when the app is fully refreshed.
+without adding a separate state-management library. The cart is also saved in
+the browser's localStorage and restored on refresh. Checkout clears the saved
+cart when storage is writable. If storage is unavailable, the cart works in
+memory for the current session, but changes cannot be saved; an older saved
+cart could reappear when storage becomes available again.
 
 ## Product data
 
